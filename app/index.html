@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sunset Cover — GTA 6-style Cover Maker</title>
+<link rel="preload" href="./fonts/Anton-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="./fonts/Oswald.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><span class="brand-mark">SC</span><span class="brand-name">SUNSET COVER</span></div>
+  <p class="tagline">GTA 6-style cover maker &mdash; your photo, your caption, poster art in three taps.</p>
+</header>
+<main class="app">
+  <section class="controls" aria-label="Cover controls">
+    <div class="group">
+      <h2>1 &middot; Photos</h2>
+      <label class="file-btn">Add photos from your machine
+        <input id="photo" type="file" accept="image/*" multiple>
+      </label>
+      <p class="hint">Photos are read on this machine only &mdash; nothing is uploaded.</p>
+      <div class="row">
+        <button id="samples" type="button" class="ghost">Use sample photos</button>
+        <label class="check"><input id="onePhoto" type="checkbox"> One photo in all panels</label>
+      </div>
+      <div id="thumbs" class="thumbs" aria-label="Loaded photos"></div>
+    </div>
+
+    <div class="group">
+      <h2>2 &middot; Layout</h2>
+      <div class="seg" id="layouts" role="group" aria-label="Layout">
+        <button type="button" data-layout="hero" class="on">Hero + strip</button>
+        <button type="button" data-layout="grid">2 &times; 2 grid</button>
+        <button type="button" data-layout="stack">3-panel stack</button>
+        <button type="button" data-layout="full">Full-bleed</button>
+      </div>
+      <p class="hint">Click a panel in the preview to select it, then crop it below.</p>
+    </div>
+
+    <div class="group">
+      <h2>3 &middot; Colour grade</h2>
+      <div class="seg grades" id="grades" role="group" aria-label="Colour grade">
+        <button type="button" data-grade="sunset" class="on"><i style="background:linear-gradient(135deg,#ff5e7a,#ff9a3d,#ffd23d)"></i>Sunset</button>
+        <button type="button" data-grade="neon"><i style="background:linear-gradient(135deg,#00e5c7,#ff2fb3)"></i>Neon Nights</button>
+        <button type="button" data-grade="golden"><i style="background:linear-gradient(135deg,#ffb347,#fff3a0)"></i>Golden Hour</button>
+        <button type="button" data-grade="noir"><i style="background:linear-gradient(135deg,#e8e8e8,#222)"></i>Noir</button>
+        <button type="button" data-grade="dusk"><i style="background:linear-gradient(135deg,#7b5cff,#ff5e7a,#1b1035)"></i>Palm Dusk</button>
+      </div>
+    </div>
+
+    <div class="group">
+      <h2>4 &middot; Selected panel</h2>
+      <div class="row">
+        <label class="grow">Photo in this panel
+          <select id="panelPhoto"></select>
+        </label>
+        <button id="panelCenter" type="button" class="ghost">Centre</button>
+      </div>
+      <label>Zoom <span id="zoomVal" class="val">1.00&times;</span>
+        <input id="zoom" type="range" min="1" max="3" step="0.01" value="1">
+      </label>
+      <label>Move left / right <span id="oxVal" class="val">0</span>
+        <input id="ox" type="range" min="-0.5" max="0.5" step="0.01" value="0">
+      </label>
+      <label>Move up / down <span id="oyVal" class="val">0</span>
+        <input id="oy" type="range" min="-0.5" max="0.5" step="0.01" value="0">
+      </label>
+      <div class="seg" id="fitMode" role="group" aria-label="Fit">
+        <button type="button" data-fit="cover" class="on">Fill panel</button>
+        <button type="button" data-fit="fit">Show whole photo</button>
+      </div>
+      <p class="hint">Tip: drag the photo inside the preview to move it.</p>
+    </div>
+
+    <div class="group">
+      <h2>5 &middot; Caption</h2>
+      <label>Caption
+        <input id="caption" type="text" maxlength="48" value="SUNSET HEIST">
+      </label>
+      <label>Kicker &mdash; small line above (optional)
+        <input id="kicker" type="text" maxlength="48" value="" placeholder="e.g. SUMMER IN THE CITY">
+      </label>
+      <label>Lettering size <span id="capSizeVal" class="val">100%</span>
+        <input id="capSize" type="range" min="0.6" max="1.6" step="0.05" value="1">
+      </label>
+      <div class="row">
+        <label class="grow">Position
+          <select id="capPos">
+            <option value="bottom" selected>Bottom</option>
+            <option value="top">Top</option>
+            <option value="middle">Middle</option>
+          </select>
+        </label>
+        <label class="grow">Fill
+          <select id="capFill">
+            <option value="gradient" selected>Sunset gradient</option>
+            <option value="white">White</option>
+            <option value="ink">Black ink</option>
+          </select>
+        </label>
+      </div>
+      <label class="check"><input id="capOutline" type="checkbox" checked> Bold comic outline</label>
+    </div>
+
+    <div class="group export">
+      <h2>6 &middot; Export PNG</h2>
+      <div class="seg" id="sizes" role="group" aria-label="Export size">
+        <button type="button" data-size="1080x1080" class="on">1080 &times; 1080</button>
+        <button type="button" data-size="1080x1350">1080 &times; 1350</button>
+        <button type="button" data-size="1920x1080">1920 &times; 1080</button>
+      </div>
+      <button id="export" type="button" class="big">Export PNG</button>
+      <p id="status" role="status"></p>
+    </div>
+  </section>
+
+  <section class="stage" aria-label="Live preview">
+    <canvas id="cover" width="1080" height="1080" aria-label="Live cover preview"></canvas>
+    <p class="stage-hint">Live preview &mdash; click a panel to select it. What you see is what exports.</p>
+  </section>
+</main>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
