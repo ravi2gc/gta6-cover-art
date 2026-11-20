@@ -1,8 +1,8 @@
 # Palm Fever — GTA-Style Cover Art Maker
 
-[![make.fun](https://img.shields.io/badge/make.fun-bounty-blue)](https://make.fun/bounty/gta6-cover-art-01)
-[![repo](https://img.shields.io/badge/repo-ravi2gc%2Fgta6--cover--art-181717?logo=github)](https://github.com/ravi2gc/gta6-cover-art)
-[![cover art](https://img.shields.io/badge/cover%20art-Palm%20Fever-ff4d8d)](https://make.fun/bounty/gta6-cover-art-01)
+[![make.fun · gta6-cover-art-01](https://make.fun/badge/gta6-cover-art-01.svg)](https://make.fun/bounty/gta6-cover-art-01?utm_source=github&utm_medium=readme&utm_campaign=gta6-cover-art-01)
+[![rank](https://make.fun/badge/gta6-cover-art-01/ravi2gc/gta6-cover-art/rank.svg)](https://make.fun/bounty/gta6-cover-art-01/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=gta6-cover-art-01)
+[![reward](https://make.fun/badge/gta6-cover-art-01/ravi2gc/gta6-cover-art/reward.svg)](https://make.fun/bounty/gta6-cover-art-01?utm_source=github&utm_medium=readme&utm_campaign=gta6-cover-art-01)
 
 Turn your own photos into a multi-panel GTA-style poster — the cast grid, the
 striped-gradient title, the neon script subtitle, the press quote, the gold
