@@ -1,61 +1,56 @@
-# Sunset Cover — GTA 6-style Cover Maker
+# Palm Fever — GTA-Style Cover Art Maker
 
-[![make.fun](https://make.fun/badge/gta6-cover-art-01.svg)](https://make.fun/bounty/gta6-cover-art-01)
-[![rank](https://make.fun/badge/gta6-cover-art-01/ravi2gc/gta6-cover-art/rank.svg)](https://make.fun/bounty/gta6-cover-art-01)
-[![reward](https://make.fun/badge/gta6-cover-art-01/ravi2gc/gta6-cover-art/reward.svg)](https://make.fun/bounty/gta6-cover-art-01)
+[![make.fun](https://img.shields.io/badge/make.fun-bounty-blue)](https://make.fun/bounty/gta6-cover-art-01)
+[![repo](https://img.shields.io/badge/repo-ravi2gc%2Fgta6--cover--art-181717?logo=github)](https://github.com/ravi2gc/gta6-cover-art)
+[![cover art](https://img.shields.io/badge/cover%20art-Palm%20Fever-ff4d8d)](https://make.fun/bounty/gta6-cover-art-01)
 
-An entry for [Make GTA 6 Cover Art](https://make.fun/bounty/gta6-cover-art-01) on make.fun.
+Turn your own photos into a multi-panel GTA-style poster — the cast grid, the
+striped-gradient title, the neon script subtitle, the press quote, the gold
+seal — and export it as a PNG to share. Everything runs offline in the
+browser: your photos are read on your own machine and never uploaded.
 
-**Sunset Cover** turns your photo and a caption into GTA 6-style poster art —
-the multi-panel look with bold condensed lettering and a Vice City sunset or
-neon colour grade — and exports it as a PNG to share. It runs entirely
-offline in a desktop browser from its own static files: photos are read on
-your machine and never leave it.
+## What it makes
 
-## How it works
-
-1. **Add photos** — pick one or several from your machine, or use the two
-   included sample photos. Click a photo thumbnail to put it in the selected
-   panel; "One photo in all panels" fills every panel with the same shot.
-2. **Pick a layout** — Hero + strip, 2×2 grid, 3-panel stack, or full-bleed.
-3. **Pick a colour grade** — Vice City Sunset, Neon Nights, Golden Hour,
-   Noir, or Palm Dusk.
-4. **Crop the selected panel** — click a panel in the live preview, then drag
-   the photo inside it, or use the zoom and position sliders; Fill panel or
-   Show whole photo.
-5. **Write the caption** — big outlined condensed caps with a sunset-gradient
-   fill, plus an optional kicker line, size and position controls.
-6. **Export PNG** — one click at 1080×1080, 1080×1350, or 1920×1080.
-
-## The art
-
-Everything on the poster is drawn by the app's own code (`app/src/cover.js`):
-multi-panel comic-book frames, a striped retro sun with rays, palm-tree
-silhouettes, halftone dots, birds, vignettes, and outlined Anton lettering
-with a gradient fill. No Rockstar Games logo, artwork, or font is used
-anywhere. Fonts are Anton and Oswald under the SIL Open Font License,
-shipped as files under `app/fonts/` with their licence texts.
+- **5 layouts** — the flagship 6-panel cast grid, an asymmetric collage, a
+  2×2 grid, a 3-panel stack, and a full-bleed hero with a code-drawn retro sun,
+  palm silhouettes and birds.
+- **6 colour grades** — Vice City Sunset, Neon Nights, Golden Hour, Noir, Palm
+  Dusk and Magenta Rush, applied evenly across every panel.
+- **Per-panel photos** — upload several photos at once, fill all panels with
+  one photo, or assign a different photo to each panel; every panel has its own
+  zoom, pan, Fill / Show-whole fit and editable role label
+  (THE DRIVER, THE BOSS, THE INSIDER, THE RIDER, THE COURIER, THE FIXER).
+- **Editable caption** — big striped title, neon script subtitle, tagline bar,
+  press quote and source, all live in the preview.
+- **Poster chrome, drawn in code** — quote strip with five stars and a VOL. 1
+  badge, tagline ribbon, production footer, barcode and an ORIGINAL COVER ART
+  gold seal.
+- **One-click PNG export** at 1080 × 1080, 1080 × 1350 and 1920 × 1080.
 
 ## Try it
 
 ```sh
-node serve.ts   # then open http://localhost:8080
+node serve.ts
+# open http://localhost:8080
 ```
 
-## Layout
+Click **Load the sample cast** for six model-made sunset portraits, pick a
+layout and a grade, click any panel to select it, then export.
 
-- `app/` — the web app (static files, no build step, no network requests)
-  - `index.html`, `style.css`, `src/cover.js` (drawing engine), `src/main.js` (editor), `src/shots.js` (screenshot scenes)
-  - `fonts/` — Anton + Oswald woff2 with OFL licence texts
-  - `samples/` — two sample photos made with an image model, free to use
-- `screenshots/` — 4 screenshots: the exported landscape cover, the editor
-  with a photo loaded, and exported portrait and square covers
-- `shots.json` — the reproducible shot scenes behind the screenshots
-- `main.ts` — the entry program (Node 22, standard library only): copies
-  `app/` and `screenshots/` to `/output` and writes `dossier.json`
-- `vendor/makefun-app.ts` — the kit's dossier library, unchanged
-- `serve.ts` — a tiny static server for local testing
+## Originality
 
-## Licence
+All lettering uses local OFL fonts (Anton, Pacifico, Oswald under
+`app/fonts/`). The sun, palms, halftone dots, birds, barcode and seal are drawn
+in code in `app/src/cover.js`. No Rockstar Games logo, wordmark, official
+artwork, character or font is used anywhere. The sample portraits in
+`app/samples/` were made with an image model for this entry.
 
-MIT — see `LICENSE`.
+## Files
+
+- `app/index.html`, `app/style.css` — page and editor styling
+- `app/src/cover.js` — the poster renderer (layouts, grades, title, seal)
+- `app/src/main.js` — editor wiring, sample cast, PNG export
+- `app/fonts/` — Anton, Pacifico, Oswald (SIL Open Font License)
+- `app/samples/` — six model-made portraits plus the kit's two starter photos
+- `main.ts` — hands `app/` and `screenshots/` in as the entry
+- `serve.ts` — static server for local trying

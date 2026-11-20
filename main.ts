@@ -1,10 +1,12 @@
-// Sunset Cover — a GTA 6-style cover maker for gta6-cover-art-01 (Node 22,
-// standard library only). The app is this directory's app/ folder: plain
-// static files a desktop browser loads offline (app/index.html and its ES
-// modules, Anton + Oswald fonts shipped under app/fonts/, no library and no
-// network request). This program hands it in: it copies app/ and screenshots/
-// from beside this file to /output and writes /output/dossier.json, the
-// summary the judge reads, with the vendored make.fun library.
+// Palm Fever — a gta6-cover-art-01 entry (Node 22, standard library only).
+// The app is this directory's app/ folder: plain static files a desktop browser
+// loads offline (app/index.html and its ES modules, local OFL fonts, no network
+// request). The program hands it in: it copies app/ and screenshots/ from beside
+// this file to /output and writes /output/dossier.json, the summary the judge
+// reads, with the vendored make.fun library. Palm Fever v2 rebuilds the v1
+// "Sunset Cover" idea as a true multi-panel poster maker: five layouts, six
+// colour grades, per-panel photos with zoom and pan, editable role labels and
+// caption, and one-click PNG exports at 1080 x 1080, 1080 x 1350 and 1920 x 1080.
 //
 // Serve it locally with `node serve.ts`, then open http://localhost:8080.
 // Outside the grader's container, MAKEFUN_OUTPUT_DIR stands in for /output:
@@ -15,7 +17,6 @@ import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { buildDossier } from './vendor/makefun-app.ts';
 
-// Sunset Cover hands in exactly what the browser runs: app/ plus screenshots/.
 const here = fileURLToPath(new URL('.', import.meta.url));
 const out = process.env.MAKEFUN_OUTPUT_DIR ?? '/output';
 
