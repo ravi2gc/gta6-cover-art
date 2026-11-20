@@ -3,81 +3,78 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Palm Fever — GTA-Style Cover Art Maker</title>
+<title>Neon Vice Studio — GTA-style cover art from your photos</title>
 <link rel="stylesheet" href="./style.css">
 </head>
 <body>
 <header class="topbar">
-  <div class="brand"><span class="brand-sun" aria-hidden="true"></span>
-    <div><h1>PALM FEVER</h1><p>Cover Art Maker · original multi-panel posters, offline</p></div>
-  </div>
-  <p class="topbar-note">100% original art · no Rockstar logo, artwork or fonts · your photos never leave this machine</p>
+  <div class="brand"><span class="brand-mark">NV</span> Neon Vice Studio</div>
+  <div class="topbar-note">Your photos stay on your machine &middot; export as PNG</div>
 </header>
-<main class="app">
-  <section class="controls" aria-label="Cover controls">
-    <div class="group">
-      <h2>1 · Photos</h2>
-      <p class="hint">Click a panel in the preview to select it, then give it a photo. Or fill every panel at once.</p>
-      <label class="file-label">Upload photos <input id="uploadPhotos" type="file" accept="image/*" multiple></label>
-      <div class="row">
-        <button id="fillAll" type="button">Fill all panels with one photo</button>
-        <button id="loadSamples" type="button">Load the sample cast</button>
-      </div>
-      <div id="sampleStrip" class="samples" aria-label="Sample photos"></div>
-      <p class="hint" id="selectedPanelLabel">Selected panel: 1 · THE DRIVER</p>
-      <div class="panel-controls">
-        <label>Role label <input id="panelLabel" type="text" maxlength="24" value="THE DRIVER"></label>
-        <label>Zoom <input id="panelZoom" type="range" min="1" max="2.5" step="0.01" value="1.15"></label>
-        <label>Pan left–right <input id="panelPanX" type="range" min="-0.5" max="0.5" step="0.01" value="0"></label>
-        <label>Pan up–down <input id="panelPanY" type="range" min="-0.5" max="0.5" step="0.01" value="0"></label>
-        <label>Fit
-          <select id="panelFit">
-            <option value="fill" selected>Fill panel</option>
-            <option value="whole">Show whole photo</option>
-          </select>
-        </label>
-        <button id="panelPhoto" type="button">Photo for this panel…</button>
-        <input id="panelPhotoInput" type="file" accept="image/*" hidden>
-      </div>
-    </div>
-    <div class="group">
-      <h2>2 · Layout</h2>
-      <div id="layoutButtons" class="choice-grid" role="group" aria-label="Layout"></div>
-    </div>
-    <div class="group">
-      <h2>3 · Colour grade</h2>
-      <div id="gradeButtons" class="choice-grid" role="group" aria-label="Colour grade"></div>
-    </div>
-    <div class="group">
-      <h2>4 · Caption</h2>
-      <label>Big title <input id="titleInput" type="text" maxlength="24" value="PALM FEVER"></label>
-      <label>Script subtitle <input id="subtitleInput" type="text" maxlength="32" value="chasing the last light"></label>
-      <label>Tagline <input id="taglineInput" type="text" maxlength="64" value="SIX STRANGERS · ONE COAST · NO WAY BACK"></label>
-      <label>Press quote <input id="quoteInput" type="text" maxlength="64" value="SUNSET CINEMA AT ITS WILDEST"></label>
-      <label>Quote source <input id="quoteSourceInput" type="text" maxlength="32" value="THE COASTAL TIMES"></label>
-    </div>
-    <div class="group">
-      <h2>5 · Export</h2>
-      <label>Post size
-        <select id="sizeSelect">
-          <option value="1920x1080" selected>1920 × 1080 · landscape</option>
-          <option value="1080x1080">1080 × 1080 · square</option>
-          <option value="1080x1350">1080 × 1350 · portrait</option>
-        </select>
+<main class="studio">
+  <aside class="panel" aria-label="Editor controls">
+    <section class="group">
+      <h2><span class="step">1</span> Photos</h2>
+      <label class="dropzone" id="dropzone">
+        <input id="upload" type="file" accept="image/*" multiple hidden>
+        <strong>Drop photos here</strong><span>or click to pick from your machine</span>
       </label>
-      <div class="row">
-        <button id="exportPng" class="primary" type="button">Export PNG</button>
-        <button id="exportSquare" type="button">PNG 1080 × 1080</button>
-        <button id="exportPortrait" type="button">PNG 1080 × 1350</button>
-        <button id="exportWide" type="button">PNG 1920 × 1080</button>
+      <div class="thumbs" id="thumbs" aria-label="Your photos and samples"></div>
+      <p class="hint">Click a photo, then click a panel on the cover to put it there.
+      One photo can fill several panels.</p>
+    </section>
+    <section class="group">
+      <h2><span class="step">2</span> Layout</h2>
+      <div class="layout-grid" id="layouts" role="radiogroup" aria-label="Layout"></div>
+    </section>
+    <section class="group">
+      <h2><span class="step">3</span> Colour grade</h2>
+      <div class="grade-grid" id="grades" role="radiogroup" aria-label="Colour grade"></div>
+    </section>
+    <section class="group">
+      <h2><span class="step">4</span> Caption</h2>
+      <label class="field">Title
+        <input id="title" type="text" maxlength="28" value="NEON VICE">
+      </label>
+      <label class="field">Subtitle
+        <input id="subtitle" type="text" maxlength="48" value="A LEONIDA STORY">
+      </label>
+    </section>
+    <section class="group">
+      <h2><span class="step">5</span> Callouts</h2>
+      <div class="callout-row">
+        <input id="calloutText" type="text" maxlength="32" placeholder="Label, e.g. The Getaway">
+        <button id="addCallout" type="button">+ Add</button>
+      </div>
+      <ul class="callout-list" id="calloutList"></ul>
+      <p class="hint">Callouts point at the cover with a leader line. Drag a callout
+      label on the cover to move it.</p>
+    </section>
+    <section class="group">
+      <h2><span class="step">6</span> Crop the selected panel</h2>
+      <div class="crop-controls">
+        <label>Zoom <input id="zoom" type="range" min="1" max="3" step="0.01" value="1"></label>
+        <label>Rotate <input id="rotate" type="range" min="-25" max="25" step="1" value="0"></label>
+        <p class="hint">Drag the photo inside the selected panel to pan it.</p>
+      </div>
+    </section>
+    <section class="group export">
+      <h2><span class="step">7</span> Export PNG</h2>
+      <div class="size-row" id="sizes" role="radiogroup" aria-label="Export size">
+        <button type="button" data-size="1080x1080">1080 &times; 1080</button>
+        <button type="button" data-size="1080x1350">1080 &times; 1350</button>
+        <button type="button" data-size="1920x1080">1920 &times; 1080</button>
+      </div>
+      <div class="export-row">
+        <button id="exportPng" type="button" class="primary">Download PNG</button>
+        <button id="copyPng" type="button">Copy PNG</button>
       </div>
       <p id="status" role="status"></p>
-    </div>
-  </section>
-  <section class="preview" aria-label="Live preview">
-    <canvas id="cover" width="1920" height="1080" aria-label="Live cover preview"></canvas>
-    <p class="hint">Live preview — click any panel to select it. Export writes the exact PNG at full size.</p>
-    <div class="panel-list" id="panelList" aria-label="Panels"></div>
+    </section>
+  </aside>
+  <section class="stage">
+    <canvas id="cover" width="1080" height="1080" aria-label="Live cover preview"></canvas>
+    <p class="stage-hint">Click a panel to select it &middot; drag inside a panel to pan the photo</p>
   </section>
 </main>
 <script type="module" src="./src/main.js"></script>
