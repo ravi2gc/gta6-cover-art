@@ -1,56 +1,43 @@
-# Palm Fever — GTA-Style Cover Art Maker
-
+# gta6-cover-art
 [![make.fun · gta6-cover-art-01](https://make.fun/badge/gta6-cover-art-01.svg)](https://make.fun/bounty/gta6-cover-art-01?utm_source=github&utm_medium=readme&utm_campaign=gta6-cover-art-01)
 [![rank](https://make.fun/badge/gta6-cover-art-01/ravi2gc/gta6-cover-art/rank.svg)](https://make.fun/bounty/gta6-cover-art-01/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=gta6-cover-art-01)
 [![reward](https://make.fun/badge/gta6-cover-art-01/ravi2gc/gta6-cover-art/reward.svg)](https://make.fun/bounty/gta6-cover-art-01?utm_source=github&utm_medium=readme&utm_campaign=gta6-cover-art-01)
 
-Turn your own photos into a multi-panel GTA-style poster — the cast grid, the
-striped-gradient title, the neon script subtitle, the press quote, the gold
-seal — and export it as a PNG to share. Everything runs offline in the
-browser: your photos are read on your own machine and never uploaded.
+**Neon Vice Studio** — turn your own photos into striking GTA-style multi-panel
+cover art, right in the browser. Upload photos (or use the built-in samples),
+crop each panel, pick from 8 layouts and 8 sunset/neon colour grades, write your
+caption, add callout labels, and export a PNG at 1080×1080, 1080×1350 or
+1920×1080. Everything runs offline; your photos never leave your machine.
 
-## What it makes
-
-- **5 layouts** — the flagship 6-panel cast grid, an asymmetric collage, a
-  2×2 grid, a 3-panel stack, and a full-bleed hero with a code-drawn retro sun,
-  palm silhouettes and birds.
-- **6 colour grades** — Vice City Sunset, Neon Nights, Golden Hour, Noir, Palm
-  Dusk and Magenta Rush, applied evenly across every panel.
-- **Per-panel photos** — upload several photos at once, fill all panels with
-  one photo, or assign a different photo to each panel; every panel has its own
-  zoom, pan, Fill / Show-whole fit and editable role label
-  (THE DRIVER, THE BOSS, THE INSIDER, THE RIDER, THE COURIER, THE FIXER).
-- **Editable caption** — big striped title, neon script subtitle, tagline bar,
-  press quote and source, all live in the preview.
-- **Poster chrome, drawn in code** — quote strip with five stars and a VOL. 1
-  badge, tagline ribbon, production footer, barcode and an ORIGINAL COVER ART
-  gold seal.
-- **One-click PNG export** at 1080 × 1080, 1080 × 1350 and 1920 × 1080.
-
-## Try it
+## Run it
 
 ```sh
 node serve.ts
-# open http://localhost:8080
 ```
 
-Click **Load the sample cast** for six model-made sunset portraits, pick a
-layout and a grade, click any panel to select it, then export.
+Then open http://localhost:8080 — no build step, no network, just static files
+under `app/`.
 
-## Originality
+## How it works
 
-All lettering uses local OFL fonts (Anton, Pacifico, Oswald under
-`app/fonts/`). The sun, palms, halftone dots, birds, barcode and seal are drawn
-in code in `app/src/cover.js`. No Rockstar Games logo, wordmark, official
-artwork, character or font is used anywhere. The sample portraits in
-`app/samples/` were made with an image model for this entry.
+1. **Photos** — drop in your own photos or tap a sample. Click a photo, then a
+   panel, to place it; one photo can fill several panels.
+2. **Layout** — 8 layouts: framed Key Art, 6-panel Cast Grid, Triptych, Quad,
+   Billboard hero, Diagonal split, portrait Stack, and cinematic Film Strip.
+3. **Grade** — 8 colour treatments: Vice Sunset, Neon Nights, Heatwave, Palm
+   Noir, Gold Hour, Teal Vice, Magenta Mile and Classic Print.
+4. **Caption** — bold condensed title lettering over the art, plus a subtitle.
+5. **Callouts** — labels with leader lines pointing at the cover; drag them
+   where you want them.
+6. **Crop** — click a panel to select it, drag inside it to pan, use the zoom
+   and rotate sliders.
+7. **Export** — one click downloads the PNG in your chosen post size, or copies
+   it to the clipboard.
 
-## Files
+All artwork is original: the sample portraits are model-made fictional
+characters, and the title font is Noto Sans Display Condensed Black under the
+SIL Open Font License (`app/fonts/OFL.txt`). No Rockstar logo, artwork,
+character or font is used.
 
-- `app/index.html`, `app/style.css` — page and editor styling
-- `app/src/cover.js` — the poster renderer (layouts, grades, title, seal)
-- `app/src/main.js` — editor wiring, sample cast, PNG export
-- `app/fonts/` — Anton, Pacifico, Oswald (SIL Open Font License)
-- `app/samples/` — six model-made portraits plus the kit's two starter photos
-- `main.ts` — hands `app/` and `screenshots/` in as the entry
-- `serve.ts` — static server for local trying
+Built with [make.fun](https://make.fun/r/vpfq6vhj) — get paid in real USDC for
+building stuff with your AI.
